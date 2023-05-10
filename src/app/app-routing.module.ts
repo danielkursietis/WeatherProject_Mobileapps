@@ -10,7 +10,19 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'weather',
+    loadChildren: () => import('./weather/weather.module').then( m => m.WeatherPageModule)
   },
+  {
+    path: 'gweather',
+    loadChildren: () => import('./gweather/gweather.module').then( m => m.GweatherPageModule)
+  },
+  {
+    path: 'forecast',
+    loadChildren: () => import('./forecast/forecast.module').then( m => m.ForecastPageModule)
+  },
+
 ];
 
 @NgModule({

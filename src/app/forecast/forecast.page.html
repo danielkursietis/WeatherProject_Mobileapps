@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: yellow; text-align: center;">Forecast</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-text-center">
+  <ion-button (click)="getGPS()">Get Forecast</ion-button>
+    <!-- Display forecast based on user location-->
+  <ion-card *ngIf="forecastData">
+    <ion-card-header>
+      {{forecastData.location.name}}, {{forecastData.location.region}}, {{forecastData.location.country}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text>Max Temp / Min Temp</ion-text>
+      <ion-list>
+        <ion-item *ngFor="let forecastDay of forecastData.forecast.forecastday">
+          <ion-label>
+            <h2>{{forecastDay.date | date:'EEE'}}</h2>
+            <p> {{forecastDay.date}}</p>
+            <p>{{forecastDay.day.condition.text}}</p>
+          </ion-label>
+          <ion-text>{{forecastDay.day.maxtemp_c}} °C / {{forecastDay.day.mintemp_c}} °C</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </div>
+</ion-content>

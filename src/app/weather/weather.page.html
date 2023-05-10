@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: yellow; text-align: center;">Your Weather</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-text-center">
+    <ion-button (click)="getGPS()">Get Weather</ion-button>
+    <!-- Display Weather Details based on user location-->
+    <ion-card *ngIf="weatherData">
+      <ion-card-header>
+        <ion-card-title>Current Weather</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Location: {{weatherData.location.name}}, {{weatherData.location.region}}, {{weatherData.location.country}}</p>
+        <p>Temperature: {{weatherData.current.temp_c}} C</p>
+        <p>Condition: {{weatherData.current.condition.text}}</p>
+        <p>Humidity: {{weatherData.current.humidity}}%</p>
+        <p>Wind Speed: {{weatherData.current.wind_kph}} kph</p>
+        <img src="{{weatherData.current.condition.icon}}" alt="{{weatherData.current.condition.text}}">
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

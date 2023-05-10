@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="color: yellow; text-align: center;">Global Weather</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchCountry($event)" placeholder="Search for a place"></ion-searchbar>
+  <!--Display Weather data based on user entry in the search bar-->
+  <ion-card *ngIf="weatherData">
+    <ion-card-header>
+      {{weatherData.location.name}}, {{weatherData.location.country}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-icon slot="start" name="thermometer"></ion-icon>
+        <ion-label>Temperature:</ion-label>
+        <ion-text>{{weatherData.current.temp_c}} °C</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="partly-sunny"></ion-icon>
+        <ion-label>Condition:</ion-label>
+        <ion-text>{{weatherData.current.condition.text}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="water"></ion-icon>
+        <ion-label>Humidity:</ion-label>
+        <ion-text>{{weatherData.current.humidity}}%</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="speedometer"></ion-icon>
+        <ion-label>Wind Speed:</ion-label>
+        <ion-text>{{weatherData.current.wind_kph}} kph</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
